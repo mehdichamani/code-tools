@@ -104,7 +104,7 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "commandline": "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\Mehdi\\MyCodeTools\\ssh-termux.ps1\"",
+                "commandline": "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\Mehdi\\OneDrive\\code-tools\\windows-terminal\\ssh-termux.ps1\"",
                 "guid": "{d6b5cd24-62f1-5250-8b6e-58bc8fd4547d}",
                 "icon": "\ud83d\udcf1",
                 "name": "SSH Termux"
