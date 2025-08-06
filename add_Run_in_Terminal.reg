@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+; ----------------------------
+; for .ps1
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.ps1\Shell]
+@="powershell"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.ps1\Shell\RunAs]
+@="Run in Terminal"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.ps1\Shell\RunAs\Command]
+@="wt.exe -w 0 nt -p \"PowerShell 7 Preview\" pwsh.exe -NoExit -File \"%1\""
+
+; ----------------------------
+; for .bat
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.bat\Shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.bat\Shell\RunInTerminal]
+@="Run in Terminal"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.bat\Shell\RunInTerminal\Command]
+@="wt.exe -w 0 nt -p \"Command Prompt\" cmd.exe /k \"%1\""
