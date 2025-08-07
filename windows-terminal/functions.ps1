@@ -46,7 +46,16 @@ function Set-MyNetworkMetric {
     Get-NetIPInterface -AddressFamily IPv4 | Sort-Object InterfaceMetric | Format-Table ifIndex, InterfaceAlias, InterfaceMetric
 }
 
-Set-Alias -Name setmetric -Value Set-MyNetworkMetric
+function Stop-MyComputer {
+    stop-computer -force
+    exit
+}
+
+function Start-MkvOrganizer {
+    python "C:\Users\Mehdi\OneDrive\code-tools\mkvOrganizer.py"
+}
+
+Set-Alias -Name off -Value Stop-MyComputer
+Set-Alias -Name mkv -Value Start-MkvOrganizer
+Set-Alias -Name metric -Value Set-MyNetworkMetric
 Set-Alias -Name myip -Value Get-MyIPInfo
-
-
