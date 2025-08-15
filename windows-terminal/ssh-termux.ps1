@@ -1,7 +1,7 @@
 # File: ssh-termux.ps1
 
 # IP addresses
-$ip1 = "192.168.1.50"
+$ip1 = "192.168.1.105"
 $ip0 = "192.168.0.50"
 
 # Get input from user

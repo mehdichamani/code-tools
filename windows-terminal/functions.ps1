@@ -12,6 +12,8 @@ function Get-MyIPInfo {
     🏙️ City: $($info.city)
     🛰️ ISP: $($info.isp)"
 }
+Set-Alias -Name myip -Value Get-MyIPInfo
+#######################################################
 
 function Set-MyNetworkMetric {
     Write-Host "Interfaces found:" -ForegroundColor Cyan
@@ -45,17 +47,49 @@ function Set-MyNetworkMetric {
     Write-Host "`nFinal interface metrics:" -ForegroundColor Cyan
     Get-NetIPInterface -AddressFamily IPv4 | Sort-Object InterfaceMetric | Format-Table ifIndex, InterfaceAlias, InterfaceMetric
 }
-
+Set-Alias -Name metric -Value Set-MyNetworkMetric
+#######################################################
 function Stop-MyComputer {
     stop-computer -force
     exit
 }
-
+Set-Alias -Name off -Value Stop-MyComputer
+#######################################################
 function Start-MkvOrganizer {
     python "C:\Users\Mehdi\OneDrive\code-tools\mkvOrganizer.py"
 }
-
-Set-Alias -Name off -Value Stop-MyComputer
 Set-Alias -Name mkv -Value Start-MkvOrganizer
-Set-Alias -Name metric -Value Set-MyNetworkMetric
-Set-Alias -Name myip -Value Get-MyIPInfo
+#######################################################
+function Toggle-SystemTheme {
+    Write-Host "Checking current system theme..."
+
+    $currentTheme = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name SystemUsesLightTheme).SystemUsesLightTheme
+
+    if ($currentTheme -eq 0) {
+        Write-Host "Current Theme: Dark Mode"
+        Write-Host "Switching to Light Mode..."
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name AppsUseLightTheme -Value 1
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name SystemUsesLightTheme -Value 1
+        Write-Host "Switched to Light Mode!"
+    } else {
+        Write-Host "Current Theme: Light Mode"
+        Write-Host "Switching to Dark Mode..."
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name AppsUseLightTheme -Value 0
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name SystemUsesLightTheme -Value 0
+        Write-Host "Switched to Dark Mode!"
+    }
+
+    Write-Host "Restarting Windows Explorer..."
+    Stop-Process -Name explorer -Force
+    Start-Process explorer
+
+    Write-Host "Done!"
+}
+Set-Alias -Name ldtoggle -Value Toggle-SystemTheme
+#######################################################
+Set-Alias -Name c -Value Clear-Host
+#######################################################
+function Exit-Terminal {
+    Exit
+}
+Set-Alias -Name q -Value Exit-Terminal

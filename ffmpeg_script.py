@@ -160,7 +160,9 @@ def process_videos(input_dir, selected_filters, filter_numbers):
 
         # Print processing line after any prompt
         print(f"Processing: {file_path.name} [{idx}/{total_videos}]")
+        import time
         try:
+            start_time = time.time()
             process = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.DEVNULL, text=True, bufsize=1)
             time_pattern = re.compile(r'time=([\d:.]+)')
             last_time = ''
@@ -191,9 +193,14 @@ def process_videos(input_dir, selected_filters, filter_numbers):
                         percent_str = "   ?%"
                     print(f"\rProgress: {last_time} / {duration_str} ({percent_str}) [{idx}/{total_videos}]", end='', flush=True)
             process.wait()
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            from datetime import timedelta as _timedelta
+            elapsed_str = str(_timedelta(seconds=int(elapsed_time)))
             print(f"\rProgress: {duration_str} / {duration_str} (100.0%) [{idx}/{total_videos}]           ")
             if process.returncode == 0:
                 print(f"Processed: {file_path} -> {output_file}")
+                print(f"Time taken: {elapsed_str}\n")
             else:
                 print(f"Error processing {file_path}")
                 return
