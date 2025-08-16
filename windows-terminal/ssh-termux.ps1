@@ -1,22 +1,56 @@
 # File: ssh-termux.ps1
 
-# IP addresses
-$ip1 = "192.168.1.105"
-$ip0 = "192.168.0.50"
-
-# Get input from user
-$input = Read-Host "Enter IP address (or '1' for $ip1, '0' for $ip0)"
-
-# Determine which IP to use
-$finalIP = switch ($input) {
-    "1" { $ip1 }
-    "0" { $ip0 }
-    "" { $ip1 }  # Default to 192.168.1.50 if empty
-    default { $input }  # Use the entered IP if not 0 or 1
+# Define hostname → IP mapping
+$hostIPMap = @{
+    "Gigabyte-PC"   = "192.168.1.105"
+    "IT2"   = "192.168.0.50"
+    "LAB-PC"    = "10.0.0.50"
+    "OFFICE-LT" = "192.168.0.75"
 }
 
-# Run SSH command
+# Step 1: Get current hostname
+$hostname = $env:COMPUTERNAME
+Write-Host "Detected hostname: $hostname" -ForegroundColor Cyan
+
+# Step 2: Check if hostname exists in the map
+if ($hostIPMap.ContainsKey($hostname)) {
+    $finalIP = $hostIPMap[$hostname]
+    Write-Host "Hostname matched >> Using IP: $finalIP" -ForegroundColor Green
+} else {
+    # Step 3: Fallback/manual input with numbered list
+    Write-Host "Hostname not recognized. Choose from list or enter manual IP:" -ForegroundColor Yellow
+    
+    $i = 1
+    $numberToHost = @{}
+    foreach ($entry in $hostIPMap.GetEnumerator()) {
+        Write-Host "$i. $($entry.Key) >> $($entry.Value)"
+        $numberToHost[$i] = $entry
+        $i++
+    }
+
+    $input = Read-Host "Enter number or manual IP"
+    $input = $input.Trim()
+
+    if ([int]::TryParse($input, [ref]$null)) {
+        $num = [int]$input
+        if ($numberToHost.ContainsKey($num)) {
+            $finalIP = $numberToHost[$num].Value
+        } else {
+            Write-Host "Invalid number, defaulting to Gigabyte-PC" -ForegroundColor Yellow
+            $finalIP = $hostIPMap["Gigabyte-PC"]
+        }
+    } elseif ($input -eq "") {
+        $finalIP = $hostIPMap["Gigabyte-PC"]
+    } else {
+        $finalIP = $input
+    }
+
+    Write-Host "Using IP: $finalIP" -ForegroundColor Green
+}
+
+# Step 4: Run SSH command
+Write-Host "Connecting via SSH to $finalIP..." -ForegroundColor Cyan
 ssh -i "~/.ssh/id_multiusekey" -p 8022 u0_a355@$finalIP
 
-# Pause before closing
+# Step 5: Pause before closing
 pause
