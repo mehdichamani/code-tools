@@ -1,1 +1,0 @@
-manage-bde -lock e:

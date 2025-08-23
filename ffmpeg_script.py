@@ -10,7 +10,8 @@ filters = [
     'eq=brightness=0.15:contrast=1.4:saturation=1.2:gamma=1.1',  # Light Fix
     'hqdn3d=1.5:1.5:6:6',    # Digital Noise Fix
     'unsharp=7:7:1.5:7:7:0.0',  # Strong Sharp & Noise
-    'smartblur=1.5:-0.35:-3.5:0.65:0.25:2.0'  # Soft Sharp & Noise
+    'smartblur=1.5:-0.35:-3.5:0.65:0.25:2.0',  # Soft Sharp & Noise
+    'crop=1080:1080:700:0,eq=brightness=0.15:contrast=1.4:saturation=1.2:gamma=1.1,hqdn3d=1.5:1.5:6:6,unsharp=7:7:1.5:7:7:0.0'  # Combined (1,3,4,5)
 ]
 
 filter_names = [
@@ -19,7 +20,8 @@ filter_names = [
     'Light Fix',
     'Digital Noise Fix',
     'Strong Sharp & Noise',
-    'Soft Sharp & Noise'
+    'Soft Sharp & Noise',
+    'Combined (1,3,4,5)'
 ]
 
 def get_input_directory():
@@ -65,8 +67,6 @@ def process_videos(input_dir, selected_filters, filter_numbers):
     if not mp4_files:
         print(f"No MP4 files found in {input_dir}")
         return
-
-    # use_gpu is now passed as an argument
 
     import sys
     import re
@@ -211,8 +211,11 @@ def process_videos(input_dir, selected_filters, filter_numbers):
 def main():
     input_dir = get_input_directory()
     selected_indexes, use_gpu = get_filter_and_cpu_selection()
-    # Combine selected filters
-    selected_filters = ','.join(filters[i] for i in selected_indexes)
+    # Handle filter selection
+    if len(selected_indexes) == 1:
+        selected_filters = filters[selected_indexes[0]]
+    else:
+        selected_filters = ','.join(filters[i] for i in selected_indexes)
     filter_numbers = [i + 1 for i in selected_indexes]
     process_videos.use_gpu = use_gpu
     process_videos(input_dir, selected_filters, filter_numbers)

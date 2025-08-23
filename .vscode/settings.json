@@ -18,5 +18,6 @@
         "titleBar.inactiveBackground": "#9ad65499",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#9ad654"
+    "peacock.color": "#9ad654",
+    "CodeGPT.apiKey": "OpenAI"
 }

@@ -3,7 +3,7 @@
 # Define hostname → IP mapping
 $hostIPMap = @{
     "Gigabyte-PC"   = "192.168.1.105"
-    "IT2"   = "192.168.0.50"
+    "IT2"   = "192.168.0.105"
     "LAB-PC"    = "10.0.0.50"
     "OFFICE-LT" = "192.168.0.75"
 }
