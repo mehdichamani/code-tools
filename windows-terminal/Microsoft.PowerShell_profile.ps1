@@ -1,6 +1,6 @@
 Invoke-Expression (&starship init powershell)
 # Load custom functions and aliases from external file
-. "C:\Users\Mehdi\OneDrive\code-tools\windows-terminal\functions.ps1"
+. "$HOME\OneDrive\code-tools\windows-terminal\functions.ps1"
 
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
@@ -15,6 +15,7 @@ if (Test-Path($ChocolateyProfile)) {
 
 function myhelp {
     $customFunctionsPath = "C:\Users\Mehdi\OneDrive\code-tools\windows-terminal\functions.ps1"
+
     if (-not (Test-Path $customFunctionsPath)) {
         Write-Host "❌ functions.ps1 not found at $customFunctionsPath" -ForegroundColor Red
         return
@@ -25,18 +26,32 @@ function myhelp {
 
     $lines = Get-Content $customFunctionsPath
 
-    # Aliases
-    Write-Host "📌 Aliases:" -ForegroundColor Yellow
+    # ===== Aliases =====
+    $aliasList = @()
     $lines | Where-Object { $_ -match '^Set-Alias' } | ForEach-Object {
         if ($_ -match 'Set-Alias\s+-Name\s+(\S+)\s+-Value\s+(.+)$') {
-            $name = $matches[1]
-            $value = $matches[2]
-            Write-Host "  $name ➜ $value"
+            $aliasList += [PSCustomObject]@{
+                Alias   = $matches[1]
+                Command = $matches[2]
+            }
         }
     }
 
-    # Functions with descriptions
-    Write-Host "`n🔧 Functions:" -ForegroundColor Yellow
+    if ($aliasList.Count -gt 0) {
+        Write-Host "📌 Aliases:" -ForegroundColor Yellow
+        # Header
+        Write-Host ("{0,-15} {1}" -f "Alias", "Command") -ForegroundColor White
+        Write-Host ("{0,-15} {1}" -f "-----", "-------") -ForegroundColor DarkGray
+
+        foreach ($a in $aliasList) {
+            Write-Host ("{0,-15}" -f $a.Alias) -ForegroundColor Cyan -NoNewline
+            Write-Host (" {0}" -f $a.Command) -ForegroundColor Gray
+        }
+        Write-Host ""
+    }
+
+    # ===== Functions =====
+    $funcList = @()
     for ($i = 0; $i -lt $lines.Count; $i++) {
         if ($lines[$i] -match '^function\s+(\S+)') {
             $funcName = $matches[1]
@@ -45,9 +60,26 @@ function myhelp {
             } else {
                 "No description"
             }
-            Write-Host "  $funcName ➜ $descLine"
+
+            $funcList += [PSCustomObject]@{
+                Function    = $funcName
+                Description = $descLine
+            }
         }
     }
 
-    Write-Host "`n📘 Tip: Press Enter to confirm actions, Ctrl+C to cancel."
+    if ($funcList.Count -gt 0) {
+        Write-Host "🔧 Functions:" -ForegroundColor Yellow
+        # Header
+        Write-Host ("{0,-15} {1}" -f "Function", "Description") -ForegroundColor White
+        Write-Host ("{0,-15} {1}" -f "--------", "-----------") -ForegroundColor DarkGray
+
+        foreach ($f in $funcList) {
+            Write-Host ("{0,-15}" -f $f.Function) -ForegroundColor Green -NoNewline
+            Write-Host (" {0}" -f $f.Description) -ForegroundColor Gray
+        }
+        Write-Host ""
+    }
+
+    Write-Host "📘 Tip: Press Enter to confirm actions, Ctrl+C to cancel."
 }

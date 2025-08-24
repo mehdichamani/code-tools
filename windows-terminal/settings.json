@@ -80,10 +80,8 @@
     {
         "defaults": 
         {
-            "colorScheme": 
-            {
-                "light": "Campbell"
-            },
+            "colorScheme": "Campbell Powershell",
+            "elevate": true,
             "font": 
             {
                 "face": "Hurmit Nerd Font",
@@ -93,10 +91,6 @@
         "list": 
         [
             {
-                "colorScheme": 
-                {
-                    "light": "Solarized Dark"
-                },
                 "cursorShape": "vintage",
                 "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
                 "hidden": false,
@@ -110,17 +104,12 @@
                 "name": "SSH Termux"
             },
             {
-                "colorScheme": "One Half Dark",
                 "guid": "{e9d775fc-d2df-583d-964c-13f5e380a9ad}",
                 "hidden": false,
                 "name": "WSL Arch",
                 "source": "Microsoft.WSL"
             },
             {
-                "colorScheme": 
-                {
-                    "light": "Solarized Dark"
-                },
                 "commandline": "python",
                 "cursorShape": "vintage",
                 "guid": "{957e4512-c2d0-4025-b84f-8b1d1371cca2}",
@@ -134,7 +123,7 @@
                 "hidden": false,
                 "name": "Nushell",
                 "source": "nu"
-            },            
+            },
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
@@ -148,10 +137,6 @@
                 "name": "PowerShell 5"
             },
             {
-                "colorScheme": 
-                {
-                    "light": "Solarized Dark"
-                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -165,6 +150,7 @@
         ]
     },
     "schemes": [],
+    "theme": "system",
     "themes": [],
     "useAcrylicInTabRow": true
 }
