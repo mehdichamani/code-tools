@@ -1,3 +1,19 @@
+# simple lsd
+function l { lsd }
+# simple lsd
+function ls { lsd }
+# lsd hidden
+function la { lsd --all --group-dirs first }
+# lsd long
+function ll { lsd --all --header --group-dirs first -l }
+# lsd tree 3 lvl deep
+function lt { lsd --tree --depth=3 }
+# lsd tree directories only
+function ltd { lsd --tree --directory-only }
+# lsd tree unlimited depth
+function ltu { lsd --tree }
+
+
 # Clear shortcut
 function c {
     Clear-Host

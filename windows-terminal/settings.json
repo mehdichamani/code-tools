@@ -1,156 +1,146 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "id": "User.copy.644BA8F2"
-        },
-        {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "closePane",
-            "id": "User.closePane"
-        },
-        {
-            "command": 
-            {
-                "action": "closeTab"
-            },
-            "id": "User.closeTab.0"
-        }
-    ],
-    "centerOnLaunch": true,
-    "copyFormatting": "none",
-    "copyOnSelect": true,
-    "defaultProfile": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
-    "initialCols": 100,
-    "initialPosition": ",",
-    "keybindings": 
-    [
-        {
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+c"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": "User.paste",
-            "keys": "ctrl+v"
-        },
-        {
-            "id": "User.splitPane.A6751878",
-            "keys": "alt+shift+d"
-        },
-        {
-            "id": "User.closeTab.0",
-            "keys": "ctrl+w"
-        }
-    ],
-    "launchMode": "default",
-    "newTabMenu": 
-    [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
-    "profiles": 
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "actions": [
     {
-        "defaults": 
-        {
-            "colorScheme": "Campbell Powershell",
-            "elevate": true,
-            "font": 
-            {
-                "face": "Hurmit Nerd Font",
-                "size": 15
-            }
-        },
-        "list": 
-        [
-            {
-                "cursorShape": "vintage",
-                "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
-                "hidden": false,
-                "name": "PowerShell 7 Preview",
-                "source": "Windows.Terminal.PowershellCore"
-            },
-            {
-                "commandline": "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\Mehdi\\OneDrive\\code-tools\\windows-terminal\\ssh-termux.ps1\"",
-                "guid": "{d6b5cd24-62f1-5250-8b6e-58bc8fd4547d}",
-                "icon": "\ud83d\udcf1",
-                "name": "SSH Termux"
-            },
-            {
-                "guid": "{e9d775fc-d2df-583d-964c-13f5e380a9ad}",
-                "hidden": false,
-                "name": "WSL Arch",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "commandline": "python",
-                "cursorShape": "vintage",
-                "guid": "{957e4512-c2d0-4025-b84f-8b1d1371cca2}",
-                "hidden": false,
-                "icon": null,
-                "name": "Python",
-                "startingDirectory": "%USERPROFILE%"
-            },
-            {
-                "guid": "{47302f9c-1ac4-566c-aa3e-8cf29889d6ab}",
-                "hidden": false,
-                "name": "Nushell",
-                "source": "nu"
-            },
-            {
-                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "hidden": false,
-                "name": "PowerShell 7",
-                "source": "Windows.Terminal.PowershellCore"
-            },
-            {
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "PowerShell 5"
-            },
-            {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "Command Prompt"
-            },
-            {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
-                "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
-            }
-        ]
+      "command": {
+        "action": "copy",
+        "singleLine": false
+      },
+      "id": "User.copy.644BA8F2"
     },
-    "schemes": [],
-    "theme": "system",
-    "themes": [],
-    "useAcrylicInTabRow": true
+    {
+      "command": "paste",
+      "id": "User.paste"
+    },
+    {
+      "command": "find",
+      "id": "User.find"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "auto",
+        "splitMode": "duplicate"
+      },
+      "id": "User.splitPane.A6751878"
+    },
+    {
+      "command": "closePane",
+      "id": "User.closePane"
+    },
+    {
+      "command": {
+        "action": "closeTab"
+      },
+      "id": "User.closeTab.0"
+    }
+  ],
+  "centerOnLaunch": true,
+  "copyFormatting": "none",
+  "copyOnSelect": true,
+  "defaultProfile": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
+  "initialCols": 100,
+  "initialPosition": ",",
+  "keybindings": [
+    {
+      "id": "User.copy.644BA8F2",
+      "keys": "ctrl+c"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "User.paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "id": "User.splitPane.A6751878",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "User.closeTab.0",
+      "keys": "ctrl+w"
+    }
+  ],
+  "launchMode": "default",
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Campbell Powershell",
+      "elevate": true,
+      "font": {
+        "face": "Hurmit Nerd Font",
+        "size": 15
+      }
+    },
+    "list": [
+      {
+        "cursorShape": "vintage",
+        "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
+        "hidden": false,
+        "name": "PowerShell 7 Preview",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "commandline": "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\Mehdi\\OneDrive\\code-tools\\windows-terminal\\ssh-termux.ps1\"",
+        "guid": "{d6b5cd24-62f1-5250-8b6e-58bc8fd4547d}",
+        "icon": "📱",
+        "name": "SSH Termux"
+      },
+      {
+        "guid": "{e9d775fc-d2df-583d-964c-13f5e380a9ad}",
+        "hidden": false,
+        "name": "WSL Arch",
+        "source": "Microsoft.WSL"
+      },
+      {
+        "commandline": "python",
+        "cursorShape": "vintage",
+        "guid": "{957e4512-c2d0-4025-b84f-8b1d1371cca2}",
+        "hidden": false,
+        "icon": null,
+        "name": "Python",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
+        "guid": "{47302f9c-1ac4-566c-aa3e-8cf29889d6ab}",
+        "hidden": false,
+        "name": "Nushell",
+        "source": "nu"
+      },
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell 7",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": false,
+        "name": "PowerShell 5"
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": false,
+        "name": "Command Prompt"
+      },
+      {
+        "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+        "hidden": false,
+        "name": "Git Bash",
+        "source": "Git"
+      }
+    ]
+  },
+  "schemes": [],
+  "theme": "system",
+  "themes": [],
+  "useAcrylicInTabRow": true
 }
