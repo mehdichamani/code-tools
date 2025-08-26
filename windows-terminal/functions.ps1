@@ -1,7 +1,6 @@
 # simple lsd
-function l { lsd }
-# simple lsd
-function ls { lsd }
+Set-Alias l lsd
+Set-Alias ls lsd
 # lsd hidden
 function la { lsd --all --group-dirs first }
 # lsd long

@@ -11,7 +11,6 @@ filters = [
     'hqdn3d=1.5:1.5:6:6',    # Digital Noise Fix
     'unsharp=7:7:1.5:7:7:0.0',  # Strong Sharp & Noise
     'smartblur=1.5:-0.35:-3.5:0.65:0.25:2.0',  # Soft Sharp & Noise
-    'crop=1080:1080:700:0,eq=brightness=0.15:contrast=1.4:saturation=1.2:gamma=1.1,hqdn3d=1.5:1.5:6:6,unsharp=7:7:1.5:7:7:0.0'  # Combined (1,3,4,5)
 ]
 
 filter_names = [
@@ -21,7 +20,6 @@ filter_names = [
     'Digital Noise Fix',
     'Strong Sharp & Noise',
     'Soft Sharp & Noise',
-    'Combined (1,3,4,5)'
 ]
 
 def get_input_directory():
@@ -186,12 +184,14 @@ def process_videos(input_dir, selected_filters, filter_numbers):
                         except Exception:
                             return 0
                     elapsed = parse_ffmpeg_time(last_time)
+                    real_elapsed = time.time() - start_time
+                    speed = f"{elapsed/real_elapsed:.1f}x" if real_elapsed > 0 else "?x"
                     if duration:
                         percent = min(100, (elapsed / duration) * 100)
                         percent_str = f"{percent:5.1f}%"
                     else:
                         percent_str = "   ?%"
-                    print(f"\rProgress: {last_time} / {duration_str} ({percent_str}) [{idx}/{total_videos}]", end='', flush=True)
+                    print(f"\rProgress: {last_time} / {duration_str} ({percent_str}) {speed} [{idx}/{total_videos}]", end='', flush=True)
             process.wait()
             end_time = time.time()
             elapsed_time = end_time - start_time
