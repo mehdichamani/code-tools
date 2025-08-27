@@ -1,16 +1,23 @@
-# simple lsd
-Set-Alias l lsd
-Set-Alias ls lsd
-# lsd hidden
-function la { lsd --all --group-dirs first }
-# lsd long
-function ll { lsd --all --header --group-dirs first -l }
-# lsd tree 3 lvl deep
-function lt { lsd --tree --depth=3 }
-# lsd tree directories only
-function ltd { lsd --tree --directory-only }
-# lsd tree unlimited depth
-function ltu { lsd --tree }
+# eza aliases for PowerShell (Windows)
+# Remove default ls alias
+Remove-Item -Path Alias:ls -Force -ErrorAction SilentlyContinue
+# Minimal listing with icons and Git status
+function l { eza --icons=auto --git }
+# Standard long listing with icons, Git status, and hyperlinks
+function ls { eza --long --icons=auto --git --hyperlink }
+# Detailed long listing with hidden files and relative dates
+function ll { eza --long --icons=auto --git --hyperlink --all --time-style=relative }
+# Short listing with all files (including hidden)
+function la { eza --icons=auto --git --all }
+# Tree view, 2 levels deep, with icons and Git status
+function lt { eza --tree --level=2 --icons=auto --git }
+# Long listing sorted by extension
+function lx { eza --long --icons=auto --git --sort=extension }
+# Long listing sorted by size (largest first)
+function lsize { eza --long --icons=auto --git --sort=size --reverse }
+# Long listing sorted by modification time (newest first)
+function lnew { eza --long --icons=auto --git --sort=modified --reverse --time-style=relative }
+
 
 
 # Clear shortcut
