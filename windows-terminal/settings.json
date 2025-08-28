@@ -72,7 +72,7 @@
   ],
   "profiles": {
     "defaults": {
-      "colorScheme": "Campbell Powershell",
+      "colorScheme": "Campbell",
       "elevate": true,
       "font": {
         "face": "Hurmit Nerd Font",
