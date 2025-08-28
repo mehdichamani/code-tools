@@ -76,10 +76,10 @@ for original, target in media_files:
     print(f"  • {original} → {target}")
 
 # دریافت تائید کاربر
-confirm = input("\n❓ Proceed with moving these files? (y/n): ").strip().lower()
-if confirm != 'y':
-    print("❌ Operation cancelled.")
-    input("🔚 Press Enter to exit...")
+try:
+    input("\n❓ Press Enter to proceed or Ctrl+C to cancel...")
+except KeyboardInterrupt:
+    print("\n❌ Operation cancelled.")
     exit()
 
 # انجام جابه‌جایی
