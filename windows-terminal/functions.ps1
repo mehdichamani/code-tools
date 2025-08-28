@@ -126,7 +126,7 @@ function ldtoggle {
         Set-ItemProperty -Path $regPath -Name AppsUseLightTheme -Value 1
         Set-ItemProperty -Path $regPath -Name SystemUsesLightTheme -Value 1
         Write-Host "✅ Windows Color set to Light ⚪"
-        $json.profiles.defaults.colorScheme = "One Half Light"
+        $json.profiles.defaults.colorScheme = "Campbell Powershell"
         Write-Host "✅ Terminal Color set to Light ⚪"                
     } else {
         Write-Host "Current Theme: Light ⚪"
@@ -135,7 +135,7 @@ function ldtoggle {
         Set-ItemProperty -Path $regPath -Name AppsUseLightTheme -Value 0
         Set-ItemProperty -Path $regPath -Name SystemUsesLightTheme -Value 0
         Write-Host "✅ Windows Color set to Dark ⚫"
-        $json.profiles.defaults.colorScheme = "Campbell Powershell"
+        $json.profiles.defaults.colorScheme = "Campbell"
         Write-Host "✅ Terminal Color set to Dark ⚫"  
     }
     $json | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
