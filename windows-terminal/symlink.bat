@@ -30,6 +30,7 @@ if exist "%WT_LINK%" (
 
 echo Creating Windows Terminal settings symlink...
 mklink "%WT_LINK%" "%WT_TARGET%"
+
 if errorlevel 1 (
     echo Failed to create Windows Terminal settings symlink
     pause
@@ -78,6 +79,34 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
+
+
+REM ====================================
+REM 🔗 .ssh folder symlink
+REM ====================================
+
+set "ssh_LINK=%USERPROFILE%\.ssh"
+set "ssh_TARGET=%CURRENT_DIR%.ssh"
+
+if not exist "%ssh_TARGET%" (
+    echo Windows Terminal settings file not found: %ssh_TARGET%
+    pause
+    exit /b 1
+)
+
+if exist "%ssh_LINK%" (
+    del "%ssh_LINK%"
+)
+
+echo Creating .ssh folder symlink...
+mklink /D "%ssh_LINK%" "%ssh_TARGET%"
+if errorlevel 1 (
+    echo Failed to create .ssh folder symlink
+    pause
+    exit /b 1
+)
+
+
 
 echo.
 echo Symlinks created successfully!

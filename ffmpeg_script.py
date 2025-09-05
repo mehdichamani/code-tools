@@ -10,6 +10,7 @@ filters = [
     'hqdn3d=3:2.25:9:6,eq=brightness=0.30:contrast=1.6:saturation=1.3:gamma=1.1',  # Light & Noise Fix
     'unsharp=7:7:1.5:7:7:0.0',  # Strong Sharp & Noise
     'smartblur=1.5:-0.35:-3.5:0.65:0.25:2.0',  # Soft Sharp & Noise
+    'eq=brightness=0.30:contrast=1.5'
 ]
 
 filter_names = [
@@ -18,6 +19,7 @@ filter_names = [
     'Light & Noise Fix',
     'Strong Sharp & Noise',
     'Soft Sharp & Noise',
+    'beta'
 ]
 
 def get_input_directory():

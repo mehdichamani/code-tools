@@ -14,16 +14,16 @@
       "id": "User.paste"
     },
     {
-      "command": "find",
-      "id": "User.find"
-    },
-    {
       "command": {
         "action": "splitPane",
         "split": "auto",
         "splitMode": "duplicate"
       },
       "id": "User.splitPane.A6751878"
+    },
+    {
+      "command": "find",
+      "id": "User.find"
     },
     {
       "command": "closePane",
@@ -48,12 +48,12 @@
       "keys": "ctrl+c"
     },
     {
-      "id": "User.find",
-      "keys": "ctrl+shift+f"
-    },
-    {
       "id": "User.paste",
       "keys": "ctrl+v"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
     },
     {
       "id": "User.splitPane.A6751878",
@@ -97,6 +97,12 @@
         "guid": "{e9d775fc-d2df-583d-964c-13f5e380a9ad}",
         "hidden": false,
         "name": "WSL Arch",
+        "source": "Microsoft.WSL"
+      },
+      {
+        "guid": "{b85a23af-5aff-595f-9a4f-74658aa89034}",
+        "hidden": false,
+        "name": "NixOS",
         "source": "Microsoft.WSL"
       },
       {

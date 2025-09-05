@@ -84,5 +84,4 @@ function myhelp {
     Write-Host "📘 Tip: Press Enter to confirm actions, Ctrl+C to cancel."
 }
 
-
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
