@@ -9,79 +9,85 @@ if errorlevel 1 (
 
 setlocal EnableDelayedExpansion
 
-REM 📁 مسیر فولدر فعلی فایل bat
 set "CURRENT_DIR=%~dp0"
+set "SUCCESS_COUNT=0"
+set "FAIL_COUNT=0"
 
-REM ====================================
-REM 🔗 Windows Terminal settings.json symlink
-REM ====================================
-set "WT_LINK=%LocalAppData%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-set "WT_TARGET=%CURRENT_DIR%settings.json"
-
-if not exist "%WT_TARGET%" (
-    echo Windows Terminal settings file not found: %WT_TARGET%
-    pause
-    exit /b 1
-)
-
-if exist "%WT_LINK%" (
-    del "%WT_LINK%"
-)
-
-echo Creating Windows Terminal settings symlink...
-mklink "%WT_LINK%" "%WT_TARGET%"
-
-if errorlevel 1 (
-    echo Failed to create Windows Terminal settings symlink
-    pause
-    exit /b 1
-)
-
-
-REM ====================================
-REM 🔗 PowerShell profile symlink
-REM ====================================
-REM Get Documents path from registry
+REM Get Documents path for PowerShell profile
 for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" /v Personal ^| find "Personal"') do (
     set "DOCS=%%b"
 )
 
-REM PowerShell profile path
-set "PWSH_FOLDER=%DOCS%\PowerShell"
-set "PWSH_LINK=%PWSH_FOLDER%\Microsoft.PowerShell_profile.ps1"
-set "PWSH_TARGET=%CURRENT_DIR%Microsoft.PowerShell_profile.ps1"
+REM ====================================
+REM 📋 SYMLINK CONFIGURATION
+REM ====================================
 
-if not exist "%PWSH_TARGET%" (
-    echo PowerShell profile file not found: %PWSH_TARGET%
-    pause
-    exit /b 1
-)
+REM Windows Terminal Settings
+set "NAME[0]=Windows Terminal Settings"
+set "LINK[0]=%LocalAppData%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+set "TARGET[0]=%CURRENT_DIR%settings.json"
+set "FOLDER[0]="
 
-REM Create PowerShell folder if it doesn't exist
-if not exist "%PWSH_FOLDER%" (
-    mkdir "%PWSH_FOLDER%"
-    if errorlevel 1 (
-        echo Failed to create PowerShell folder
-        pause
-        exit /b 1
+REM PowerShell Profile
+set "NAME[1]=PowerShell Profile"
+set "LINK[1]=%UserProfile%Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+set "TARGET[1]=%CURRENT_DIR%Microsoft.PowerShell_profile.ps1"
+set "FOLDER[1]=%UserProfile%Documents\PowerShell"
+
+REM Add more symlinks here:
+set "NAME[2]=starship"
+set "LINK[2]=%UserProfile%\.config\starship.toml"
+set "TARGET[2]=%CURRENT_DIR%starship.toml"
+set "FOLDER[2]=%UserProfile%\.config"
+
+echo Creating symlinks...
+echo.
+
+for /L %%i in (0,1,2) do (
+    if defined NAME[%%i] (
+        call :ProcessSymlink %%i
     )
 )
 
-REM Remove existing file
-if exist "%PWSH_LINK%" (
-    del "%PWSH_LINK%"
-)
-
-echo Creating PowerShell profile symlink...
-mklink "%PWSH_LINK%" "%PWSH_TARGET%"
-if errorlevel 1 (
-    echo Failed to create PowerShell profile symlink
-    pause
-    exit /b 1
-)
-
 echo.
-echo Symlinks created successfully!
-echo Windows Terminal settings: %WT_LINK%
-echo PowerShell profile: %PWSH_LINK%
+echo ====================================
+echo Summary: %SUCCESS_COUNT% successful, %FAIL_COUNT% failed
+echo ====================================
 pause
+exit /b 0
+
+:ProcessSymlink
+set "IDX=%1"
+set "NAME=!NAME[%IDX%]!"
+set "LINK=!LINK[%IDX%]!"
+set "TARGET=!TARGET[%IDX%]!"
+set "FOLDER=!FOLDER[%IDX%]!"
+
+echo [%NAME%]
+if not exist "%TARGET%" (
+    echo   FAIL - Target file not found: %TARGET%
+    set /a FAIL_COUNT+=1
+    goto :eof
+)
+
+if not "%FOLDER%"=="" (
+    if not exist "%FOLDER%" (
+        mkdir "%FOLDER%" 2>nul
+        if errorlevel 1 (
+            echo   FAIL - Could not create folder: %FOLDER%
+            set /a FAIL_COUNT+=1
+            goto :eof
+        )
+    )
+)
+
+if exist "%LINK%" del "%LINK%" 2>nul
+mklink "%LINK%" "%TARGET%" >nul 2>&1
+if errorlevel 1 (
+    echo   FAIL - Could not create symlink
+    set /a FAIL_COUNT+=1
+) else (
+    echo   DONE - %LINK%
+    set /a SUCCESS_COUNT+=1
+)
+goto :eof

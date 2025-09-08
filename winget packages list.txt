@@ -1,0 +1,10 @@
+Git.Git
+Starship.Starship
+Neovim.Neovim
+lsd-rs.lsd
+cURL.cURL
+Brave.Brave
+VideoLAN.VLC
+ajeetdsouza.zoxide
+eza-community.eza
+sharkdp.bat
