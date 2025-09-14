@@ -4,11 +4,11 @@ import re
 import requests
 
 NEW_FOLDER = "D:\\new"
-MOVIES_FOLDER = "D:\\Movies"
-TV_FOLDER = "D:\\TV Series"
+MOVIES_FOLDER = "D:\\media\\Movies"
+TV_FOLDER = "D:\\media\\TV"
 
 JELLYFIN_URL = "http://localhost:8096"
-API_KEY = "2678c632488d415dbc00d3d665478937"
+API_KEY = "d6630da6690a4cac9eecd4e31082e773"
 
 def is_tv_show(filename):
     return bool(re.search(r'[ ._-]S\d{2}E\d{2}', filename, re.IGNORECASE))
