@@ -14,16 +14,16 @@
       "id": "User.paste"
     },
     {
-      "command": "find",
-      "id": "User.find"
-    },
-    {
       "command": {
         "action": "splitPane",
         "split": "auto",
         "splitMode": "duplicate"
       },
       "id": "User.splitPane.A6751878"
+    },
+    {
+      "command": "find",
+      "id": "User.find"
     },
     {
       "command": "closePane",
@@ -48,12 +48,12 @@
       "keys": "ctrl+c"
     },
     {
-      "id": "User.find",
-      "keys": "ctrl+shift+f"
-    },
-    {
       "id": "User.paste",
       "keys": "ctrl+v"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
     },
     {
       "id": "User.splitPane.A6751878",
@@ -67,12 +67,27 @@
   "launchMode": "default",
   "newTabMenu": [
     {
+      "profile": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
+      "type": "profile"
+    },
+    {
+      "profile": "{83642f63-94cd-5d52-9741-764eb133736c}",
+      "type": "profile"
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "profile": "{957e4512-c2d0-4025-b84f-8b1d1371cca2}",
+      "type": "profile"
+    },
+    {
       "type": "remainingProfiles"
     }
   ],
   "profiles": {
     "defaults": {
-      "colorScheme": "Campbell",
+      "colorScheme": "Campbell Powershell",
       "elevate": true,
       "font": {
         "face": "Hurmit Nerd Font",
@@ -81,35 +96,16 @@
     },
     "list": [
       {
-        "cursorShape": "vintage",
         "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
         "hidden": false,
         "name": "PowerShell 7 Preview",
         "source": "Windows.Terminal.PowershellCore"
       },
       {
-        "commandline": "ssh s24u",
-        "guid": "{d6b5cd24-62f1-5250-8b6e-58bc8fd4547d}",
-        "icon": "📱",
-        "name": "SSH Termux"
-      },
-      {
         "commandline": "wsl -d archlinux",
-        "guid": "{e9d775fc-d2df-583d-964c-13f5e380a9ad}",
+        "guid": "{83642f63-94cd-5d52-9741-764eb133736c}",
         "hidden": false,
-        "name": "WSL Arch",
-        "source": "Microsoft.WSL"
-      },
-      {
-        "guid": "{b85a23af-5aff-595f-9a4f-74658aa89034}",
-        "hidden": false,
-        "name": "NixOS",
-        "source": "Microsoft.WSL"
-      },
-      {
-        "guid": "{0ce44d79-5244-5e0d-8ea0-9bb0262d27be}",
-        "hidden": false,
-        "name": "archlinux",
+        "name": "Arch Linux (WSL)",
         "source": "Microsoft.WSL"
       },
       {
@@ -151,15 +147,9 @@
         "source": "Git"
       },
       {
-        "guid": "{83642f63-94cd-5d52-9741-764eb133736c}",
+        "guid": "{b85a23af-5aff-595f-9a4f-74658aa89034}",
         "hidden": false,
-        "name": "archlinux",
-        "source": "Microsoft.WSL"
-      },
-      {
-        "guid": "{15fe0b16-0fc0-50d2-b9a6-eca8a5f0ead9}",
-        "hidden": false,
-        "name": "archlinux",
+        "name": "NixOS",
         "source": "Microsoft.WSL"
       }
     ]

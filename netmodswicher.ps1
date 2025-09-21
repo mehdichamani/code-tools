@@ -1,9 +1,9 @@
 # Define adapter profiles with DHCP option
 $Profiles = @{
-    "3.Static" = @{
-        "Description" = "OnBoard Edari + PCI Camera"
+    "Static" = @{
+        "Description" = "with gateway and no dns"
         "PCI" = @{
-            InterfaceAlias = "🔵PCI🔵"
+            InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
             IPv4Address = "172.20.2.254"
             Mask = 24
@@ -11,7 +11,7 @@ $Profiles = @{
             DNSServer = @("127.0.0.1")
         }
         "OnBoard" = @{
-            InterfaceAlias = "🟨OnBoard🟨"
+            InterfaceAlias = "OnBoard (G5)"
             UseDHCP = $false
             IPv4Address = "172.30.39.30"
             Mask = 24
@@ -19,14 +19,14 @@ $Profiles = @{
             DNSServer = @("127.0.0.1")
         }
     }
-    "1.DHCP" = @{
-        "Description" = "Clear All IP modifications and set DHCP to all adaptors including WiFi and LAN."
+    "DHCP" = @{
+        "Description" = "full DHCP for all interfaces"
         "PCI" = @{
-            InterfaceAlias = "🔵PCI🔵"
+            InterfaceAlias = "PCI (G4)"
             UseDHCP = $true
         }
         "OnBoard" = @{
-            InterfaceAlias = "🟨OnBoard🟨"
+            InterfaceAlias = "OnBoard (G5)"
             UseDHCP = $true
         }
         "WiFi" = @{
@@ -34,10 +34,10 @@ $Profiles = @{
             UseDHCP = $true
         }
     }
-    "2.CleanStatic" = @{
-        "Description" = "WiFi Internet + OnBoard Edari + PCI Camera | no DNS no GetWay"
+    "noGateway" = @{
+        "Description" = "with no gateway and no dns"
         "PCI" = @{
-            InterfaceAlias = "🔵PCI🔵"
+            InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
             IPv4Address = "172.20.2.254"
             Mask = 24
@@ -45,7 +45,7 @@ $Profiles = @{
             DNSServer = @("")
         }
         "OnBoard" = @{
-            InterfaceAlias = "🟨OnBoard🟨"
+            InterfaceAlias = "OnBoard (G5)"
             UseDHCP = $false
             IPv4Address = "172.30.39.30"
             Mask = 24
@@ -53,25 +53,59 @@ $Profiles = @{
             DNSServer = @("")
         }
     }
+    "CiscoMan" = @{
+        "Description" = "with gateway and no dns for Cisco management"
+        "PCI" = @{
+            InterfaceAlias = "PCI (G4)"
+            UseDHCP = $false
+            IPv4Address = "172.20.2.254"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "OnBoard" = @{
+            InterfaceAlias = "OnBoard (G5)"
+            UseDHCP = $false
+            IPv4Address = "192.168.30.1"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+    }
 }
 
-# Display available mods with index and descriptions
-Write-Host "Available mods:"
-$modNames = $Profiles.Keys | Sort-Object
-for ($i = 0; $i -lt $modNames.Count; $i++) {
-    $description = $Profiles[$modNames[$i]].Description
-    Write-Host "$($i + 1). $($modNames[$i]) - $description"
-}
-
-# Get selection from user
-$selection = Read-Host "Enter mod number (1-$($modNames.Count))"
-$selectedIndex = [int]$selection - 1
-
-if ($selectedIndex -ge 0 -and $selectedIndex -lt $modNames.Count) {
-    $profile = $modNames[$selectedIndex]
+# Check for command line argument
+if ($args.Count -gt 0) {
+    $profile = $args[0]
+    # Check if profile exists (case-insensitive)
+    $matchedProfile = $Profiles.Keys | Where-Object { $_ -eq $profile }
+    if (-not $matchedProfile) {
+        Write-Host "Profile '$profile' not found. Available profiles:" -ForegroundColor Red
+        $Profiles.Keys | Sort-Object | ForEach-Object {
+            Write-Host "  $_" -ForegroundColor Yellow
+        }
+        exit
+    }
+    $profile = $matchedProfile
 } else {
-    Write-Host "Invalid selection. Please enter a number between 1 and $($modNames.Count)."
-    exit
+    # Display available mods with index and descriptions
+    Write-Host "Available mods:"
+    $modNames = $Profiles.Keys | Sort-Object
+    for ($i = 0; $i -lt $modNames.Count; $i++) {
+        $description = $Profiles[$modNames[$i]].Description
+        Write-Host "$($i + 1). $($modNames[$i]) - $description"
+    }
+
+    # Get selection from user
+    $selection = Read-Host "Enter mod number (1-$($modNames.Count))"
+    $selectedIndex = [int]$selection - 1
+
+    if ($selectedIndex -ge 0 -and $selectedIndex -lt $modNames.Count) {
+        $profile = $modNames[$selectedIndex]
+    } else {
+        Write-Host "Invalid selection. Please enter a number between 1 and $($modNames.Count)."
+        exit
+    }
 }
 
 if ($Profiles.ContainsKey($profile)) {

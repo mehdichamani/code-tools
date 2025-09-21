@@ -35,6 +35,10 @@ function ffm {
     py "$HOME\OneDrive\code-tools\ffmpeg_script.py" @args
 }
 
+function vlan {
+    pwsh "$HOME\OneDrive\code-tools\netmodswicher.ps1" @args
+}
+
 # Internal & External IP display
 function myip {
     Write-Host "`n📡 Internal IPs:" -ForegroundColor Cyan
