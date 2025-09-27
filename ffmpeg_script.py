@@ -125,7 +125,7 @@ def process_videos(input_dir, selected_filters, filter_numbers):
 
         # Prepare ffmpeg command
         if selected_filters is None:
-            cmd = ['ffmpeg', '-i', str(file_path), '-c:v', 'libx264', '-crf', '23', '-preset', 'medium', '-c:a', 'aac', '-b:a', '128k', output_file]
+            cmd = ['ffmpeg', '-i', str(file_path), '-c', 'copy', output_file]
         else:
             cmd = ['ffmpeg', '-i', str(file_path), '-vf', selected_filters, '-c:v', 'libx264', '-crf', '23', '-preset', 'medium', '-c:a', 'copy', output_file]
 
