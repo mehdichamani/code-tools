@@ -3,7 +3,7 @@ from win10toast import ToastNotifier
 import subprocess
 
 notifier = ToastNotifier()
-docker_path = r"D:\docker"
+docker_path = r"Z:\docker"
 docker_exe = r"C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
 if os.path.exists(docker_path):
