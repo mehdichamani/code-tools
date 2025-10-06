@@ -1,34 +1,19 @@
 # Define adapter profiles with DHCP option
 $Profiles = @{
-    "Static" = @{
-        "Description" = "with gateway and no dns"
-        "PCI" = @{
-            InterfaceAlias = "PCI (G4)"
-            UseDHCP = $false
-            IPv4Address = "172.20.2.254"
-            Mask = 24
-            IPv4DefaultGateway = "172.20.2.1"
-            DNSServer = @("127.0.0.1")
-        }
-        "OnBoard" = @{
-            InterfaceAlias = "OnBoard (G5)"
-            UseDHCP = $false
-            IPv4Address = "172.30.39.30"
-            Mask = 24
-            IPv4DefaultGateway = "172.30.39.1"
-            DNSServer = @("127.0.0.1")
-        }
-    }
     "DHCP" = @{
         "Description" = "full DHCP for all interfaces"
-        "PCI" = @{
+        "PCI (G4)" = @{
             InterfaceAlias = "PCI (G4)"
             UseDHCP = $true
         }
-        "OnBoard" = @{
+        "OnBoard (G5)" = @{
             InterfaceAlias = "OnBoard (G5)"
             UseDHCP = $true
         }
+        "USB (G6)" = @{
+            InterfaceAlias = "USB (G6)"
+            UseDHCP = $true
+        }        
         "WiFi" = @{
             InterfaceAlias = "Wi-Fi"
             UseDHCP = $true
@@ -36,7 +21,7 @@ $Profiles = @{
     }
     "noGateway" = @{
         "Description" = "with no gateway and no dns"
-        "PCI" = @{
+        "PCI (G4)" = @{
             InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
             IPv4Address = "172.20.2.254"
@@ -44,7 +29,7 @@ $Profiles = @{
             IPv4DefaultGateway = ""
             DNSServer = @("")
         }
-        "OnBoard" = @{
+        "OnBoard (G5)" = @{
             InterfaceAlias = "OnBoard (G5)"
             UseDHCP = $false
             IPv4Address = "172.30.39.30"
@@ -52,25 +37,14 @@ $Profiles = @{
             IPv4DefaultGateway = ""
             DNSServer = @("")
         }
-    }
-    "CiscoMan" = @{
-        "Description" = "with gateway and no dns for Cisco management"
-        "PCI" = @{
-            InterfaceAlias = "PCI (G4)"
+        "USB (G6)" = @{
+            InterfaceAlias = "USB (G6)"
             UseDHCP = $false
-            IPv4Address = "172.20.2.254"
+            IPv4Address = "192.168.30.2"
             Mask = 24
             IPv4DefaultGateway = ""
             DNSServer = @("")
-        }
-        "OnBoard" = @{
-            InterfaceAlias = "OnBoard (G5)"
-            UseDHCP = $false
-            IPv4Address = "192.168.30.1"
-            Mask = 24
-            IPv4DefaultGateway = ""
-            DNSServer = @("")
-        }
+        }        
     }
 }
 
