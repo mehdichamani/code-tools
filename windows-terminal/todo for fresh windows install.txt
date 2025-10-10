@@ -5,3 +5,9 @@ git
 pwsh preview
 zoxide
 localsend
+python 3.13
+
+
+auto do this:
+  git config --global user.email "mahdi.chamani20@gmail.com"
+  git config --global user.name "mahdichamani"

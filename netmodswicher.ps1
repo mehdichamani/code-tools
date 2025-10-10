@@ -19,12 +19,35 @@ $Profiles = @{
             UseDHCP = $true
         }
     }
-    "noGateway" = @{
-        "Description" = "with no gateway and no dns"
+    "normal" = @{
+        "Description" = "internet on usb camera and edari"
         "PCI (G4)" = @{
             InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
-            IPv4Address = "172.20.2.254"
+            IPv4Address = "172.20.2.210"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "OnBoard (G5)" = @{
+            InterfaceAlias = "OnBoard (G5)"
+            UseDHCP = $false
+            IPv4Address = "172.30.39.30"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "USB (G6)" = @{
+            InterfaceAlias = "USB (G6)"
+            UseDHCP = $true
+        }        
+    }
+    "cisco" = @{
+        "Description" = "cisco config vlan"
+        "PCI (G4)" = @{
+            InterfaceAlias = "PCI (G4)"
+            UseDHCP = $false
+            IPv4Address = "172.20.2.210"
             Mask = 24
             IPv4DefaultGateway = ""
             DNSServer = @("")
