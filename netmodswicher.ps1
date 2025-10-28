@@ -14,20 +14,16 @@ $Profiles = @{
             InterfaceAlias = "USB (G6)"
             UseDHCP = $true
         }        
-        "WiFi" = @{
-            InterfaceAlias = "Wi-Fi"
-            UseDHCP = $true
-        }
     }
     "normal" = @{
-        "Description" = "internet on usb camera and edari"
+        "Description" = "Fiber on USB & Camera & Edari"
         "PCI (G4)" = @{
             InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
-            IPv4Address = "172.20.2.210"
+            IPv4Address = "172.20.2.200"
             Mask = 24
-            IPv4DefaultGateway = ""
-            DNSServer = @("")
+            IPv4DefaultGateway = "172.20.2.1"
+            DNSServer = @("172.20.2.1")
         }
         "OnBoard (G5)" = @{
             InterfaceAlias = "OnBoard (G5)"
@@ -42,14 +38,14 @@ $Profiles = @{
             UseDHCP = $true
         }        
     }
-    "cisco" = @{
-        "Description" = "cisco config vlan"
+    "cisco-usb" = @{
+        "Description" = "Cisco Config on USB"
         "PCI (G4)" = @{
             InterfaceAlias = "PCI (G4)"
             UseDHCP = $false
-            IPv4Address = "172.20.2.210"
+            IPv4Address = "172.20.2.200"
             Mask = 24
-            IPv4DefaultGateway = ""
+            IPv4DefaultGateway = "172.20.2.1"
             DNSServer = @("")
         }
         "OnBoard (G5)" = @{
@@ -69,6 +65,52 @@ $Profiles = @{
             DNSServer = @("")
         }        
     }
+    "cisco-pci" = @{
+        "Description" = "Cisco Config on PCI"
+        "PCI (G4)" = @{
+            InterfaceAlias = "PCI (G4)"
+            UseDHCP = $false
+            IPv4Address = "192.168.30.2"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "OnBoard (G5)" = @{
+            InterfaceAlias = "OnBoard (G5)"
+            UseDHCP = $false
+            IPv4Address = "172.30.39.30"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "USB (G6)" = @{
+            InterfaceAlias = "USB (G6)"
+            UseDHCP = $true
+        }        
+    }
+    "cisco-onboard" = @{
+        "Description" = "Cisco Config on OnBoard"
+        "PCI (G4)" = @{
+            InterfaceAlias = "PCI (G4)"
+            UseDHCP = $false
+            IPv4Address = "172.20.2.200"
+            Mask = 24
+            IPv4DefaultGateway = "172.20.2.1"
+            DNSServer = @("")
+        }
+        "OnBoard (G5)" = @{
+            InterfaceAlias = "OnBoard (G5)"
+            UseDHCP = $false
+            IPv4Address = "192.168.30.2"
+            Mask = 24
+            IPv4DefaultGateway = ""
+            DNSServer = @("")
+        }
+        "USB (G6)" = @{
+            InterfaceAlias = "USB (G6)"
+            UseDHCP = $true
+        }        
+    }        
 }
 
 # Check for command line argument

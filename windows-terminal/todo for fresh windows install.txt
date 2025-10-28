@@ -1,9 +1,13 @@
-get pwsh profile for it and make symlink with pwsh for it so it wil 100 work
-winget install :
+winget install:
+
+
 eza
-git
-pwsh preview
 zoxide
+starship
+Microsoft.PowerShell.Preview
+
+git
+
 localsend
 python 3.13
 

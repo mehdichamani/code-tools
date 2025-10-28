@@ -14,7 +14,7 @@ if (Test-Path($ChocolateyProfile)) {
 
 
 function myhelp {
-    $customFunctionsPath = "C:\Users\Mehdi\OneDrive\code-tools\windows-terminal\functions.ps1"
+    $customFunctionsPath = "$HOME\OneDrive\code-tools\windows-terminal\functions.ps1"
 
     if (-not (Test-Path $customFunctionsPath)) {
         Write-Host "❌ functions.ps1 not found at $customFunctionsPath" -ForegroundColor Red
